@@ -26,8 +26,8 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
                 
 		$privacy = null;
                 
-                if ($context = $request->getContext()) {
-                	$privacy = $context->getSetting('privacyStatement');
+		if ($context = $request->getContext()) {
+			$privacy = $context->getSetting('privacyStatement');
                 }
                 
 		if (!$reviewAssignment->getDeclined() && !$reviewAssignment->getDateConfirmed() && !empty($privacy)) {
