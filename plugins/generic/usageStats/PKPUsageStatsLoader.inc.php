@@ -497,7 +497,7 @@ abstract class PKPUsageStatsLoader extends FileLoader {
 	 */
 	private function _getUrlMatches($url, $filePath, $lineNumber) {
 		//Treat http as https so they are both treated correctly as a baseUrl
-		$url = preg_replace("(^http://)", "https://", $url );
+		$url = preg_replace("#^http://#", "https://", $url );
 		$noMatchesReturner = array(null, null, null, null, null);
 		// Check the passed url.
 		$expectedPageAndOp = $this->getExpectedPageAndOp();
