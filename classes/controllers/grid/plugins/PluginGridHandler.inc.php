@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/plugins/PluginGridHandler.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PluginGridHandler
@@ -24,10 +24,10 @@ abstract class PluginGridHandler extends CategoryGridHandler {
 	 */
 	function __construct($roles) {
 		$this->addRoleAssignment($roles,
-			array('enable', 'disable', 'manage', 'fetchGrid, fetchCategory', 'fetchRow'));
+			array('enable', 'disable', 'manage', 'fetchGrid', 'fetchCategory', 'fetchRow'));
 
 		$this->addRoleAssignment(ROLE_ID_SITE_ADMIN,
-			array('uploadPlugin', 'upgradePlugin', 'deletePlugin', 'saveUploadPlugin'));
+			array('uploadPlugin', 'upgradePlugin', 'deletePlugin', 'saveUploadPlugin', 'uploadPluginFile'));
 
 		parent::__construct();
 	}
@@ -242,7 +242,7 @@ abstract class PluginGridHandler extends CategoryGridHandler {
 	 */
 	function enable($args, $request) {
 		$plugin = $this->getAuthorizedContextObject(ASSOC_TYPE_PLUGIN); /* @var $plugin Plugin */
-		if ($plugin->getCanEnable()) {
+		if ($request->checkCSRF() && $plugin->getCanEnable()) {
 			$plugin->setEnabled(true);
 			$user = $request->getUser();
 			$notificationManager = new NotificationManager();
@@ -389,5 +389,3 @@ abstract class PluginGridHandler extends CategoryGridHandler {
 		return new JSONMessage(true, $uploadPluginForm->fetch($request));
 	}
 }
-
-?>

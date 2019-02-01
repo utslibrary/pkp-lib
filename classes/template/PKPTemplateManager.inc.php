@@ -8,8 +8,8 @@
 /**
  * @file classes/template/PKPTemplateManager.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2000-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class TemplateManager
@@ -78,12 +78,10 @@ class PKPTemplateManager extends SmartyBC {
 
 		$this->_cacheability = CACHEABILITY_NO_STORE; // Safe default
 
-		// Register the template resources.
-		$this->registerResource('core', new PKPTemplateResource($coreTemplateDir = 'lib' . DIRECTORY_SEPARATOR . 'pkp' . DIRECTORY_SEPARATOR . 'templates'));
-		$this->registerResource('app', new PKPTemplateResource(array('templates', $coreTemplateDir)));
-		$this->default_resource_type = 'app';
-
-		$this->error_reporting = E_ALL & ~E_NOTICE;
+		$this->assign(array(
+			'itemsPerPage' => Config::getVar('interface', 'items_per_page'),
+			'numPageLinks' => Config::getVar('interface', 'page_links'),
+		));
 	}
 
 	/**
@@ -344,8 +342,6 @@ class PKPTemplateManager extends SmartyBC {
 			$this->assign(array(
 				'isUserLoggedIn' => Validation::isLoggedIn(),
 				'isUserLoggedInAs' => Validation::isLoggedInAs(),
-				'itemsPerPage' => Config::getVar('interface', 'items_per_page'),
-				'numPageLinks' => Config::getVar('interface', 'page_links'),
 			));
 
 			$user = $request->getUser();

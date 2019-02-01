@@ -1,14 +1,15 @@
 {**
  * templates/submission/submissionMetadataFormFields.tpl
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Submission's metadata form fields. To be included in any form that wants to handle
  * submission metadata.
  *}
 
+{fbvElement id="metadataModal" type="hidden" name="metadataModal" value=$metadataModal|default:0}
 {if $citationsEnabled && array_intersect(array(ROLE_ID_MANAGER, ROLE_ID_REVIEWER, ROLE_ID_AUTHOR), (array)$userRoles)}
 	{assign var=citationsEnabled value=true}
 {else}

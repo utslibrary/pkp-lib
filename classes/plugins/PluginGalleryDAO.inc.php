@@ -3,8 +3,8 @@
 /**
  * @file classes/plugins/PluginGalleryDAO.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PluginGalleryDAO
@@ -181,7 +181,7 @@ class PluginGalleryDAO extends DAO {
 			}
 		}
 
-		if ($compatible && (!$plugin->getDate() || $plugin->getDate() >= $release['date'])) {
+		if ($compatible && (!$plugin->getData('version') || version_compare($plugin->getData('version'), $release['version'], '<'))) {
 			// This release is newer than the one found earlier, or
 			// this is the first compatible release we've found.
 			$plugin->setDate($release['date']);

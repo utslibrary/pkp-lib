@@ -3,8 +3,8 @@
 /**
  * @file classes/user/PKPUserDAO.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2000-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PKPUserDAO
@@ -124,7 +124,7 @@ class PKPUserDAO extends DAO {
 	 */
 	function &getUserByEmail($email, $allowDisabled = true) {
 		$result = $this->retrieve(
-			'SELECT * FROM users WHERE email = ?' . ($allowDisabled?'':' AND disabled = 0'),
+			'SELECT * FROM users WHERE LOWER(email) = LOWER(?)' . ($allowDisabled?'':' AND disabled = 0'),
 			array($email)
 		);
 

@@ -4,8 +4,8 @@
 <!--
   * locale/de_DE/common.xml
   *
-  * Copyright (c) 2014-2018 Simon Fraser University
-  * Copyright (c) 2000-2018 John Willinsky
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2000-2019 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   * Localization information: https://pkp.sfu.ca/wiki/index.php?title=OJS:_German_(de_DE)
   * Localization strings.
@@ -173,8 +173,7 @@
 	<message key="common.languages">Sprachen</message>
 	<message key="common.less">Weniger</message>
 	<message key="common.lessThan">{$value} oder weniger</message>
-	<message key="common.commaListSeparator">, </message>
-	<message key="common.semicolonListSeparator">; </message>
+	<message key="common.listSeparator">, </message>
 	<message key="common.manage">Verwalten</message>
 	<message key="common.mailingAddress">Adresse</message>
 	<message key="common.billingAddress">Rechnungsadresse (wenn unterschiedlich)</message>

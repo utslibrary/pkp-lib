@@ -4,8 +4,8 @@
 <!--
   * locale/ru_RU/user.xml
   *
-  * Copyright (c) 2014-2018 Simon Fraser University
-  * Copyright (c) 2000-2018 John Willinsky
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2000-2019 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the ru_RU (Русский) locale.
@@ -31,7 +31,6 @@
 	<message key="user.authorization.workflowStageRequired">Этап рабочего потока не указан.</message>
 	<message key="user.authorization.pluginRequired">Модуль обязателен, но не указан.</message>
 	<message key="user.authorization.invalidReviewAssignment">У вас нет доступа к этому заданию на рецензию.</message>
-	<message key="user.authorization.submissionQuery">У вас нет разрешения на доступ к этому обсуждению.</message>
 	<message key="user.biography">Биография (например, кафедра и должность)</message>
 	<message key="user.changeMyPassword">Изменить мой пароль</message>
 	<message key="user.changePassword">Изменить пароль</message>
@@ -43,7 +42,7 @@
 	<message key="user.interests">Интересы как рецензента</message>
 	<message key="user.interests.description">(Разделяйте интересы запятой или нажимайте «Enter»)</message>
 	<message key="user.gossip">Заметки редакции</message>
-	<message key="user.gossip.description">Пишите здесь заметки о данном рецензенте, которые вы хотели бы сделать видимыми другим администраторам, менеджерам журнала и всем редакторам. Заметки будут видны при назначениях на рецензию в будущем.</message>
+	<message key="user.gossip.description">Пишите здесь заметки о данном рецензенте, которые вы хотели бы сделать видимыми другим администраторам, менеджерам журнала, редакторам и помощникам редактора. Заметки будут видны при назначениях на рецензию в будущем.</message>
 	<message key="user.group">Группа пользователя</message>
 	<message key="user.familyName">Фамилия</message>
 	<message key="user.profile.form.profileImageInvalid">Неверный формат изображения профиля или изображение слишком большое. Разрешенные форматы — .gif, .jpg, или .png, размер изображения не более 150x150 пикселей.</message>

@@ -3,8 +3,8 @@
 /**
  * @file classes/submission/SubmissionMetadataFormImplementation.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionMetadataFormImplementation
@@ -72,11 +72,15 @@ class PKPSubmissionMetadataFormImplementation {
 					$this->_parentForm->addCheck(new FormValidatorCustom($this->_parentForm, $key, 'required', $requiredLocaleKey, create_function('$key,$form,$name', '$data = $form->getData(\'keywords\'); return array_key_exists($name, $data);'), array($this->_parentForm, $submission->getLocale().'-'.$key)));
 					break;
 				case $key == 'citations':
-					$request = Application::getRequest();
-					$user = $request->getUser();
-					if ($user->hasRole(ROLE_ID_AUTHOR, $context->getId())) {
-						$this->_parentForm->addCheck(new FormValidator($this->_parentForm, $key, 'required', $requiredLocaleKey));
-					}
+					$form = $this->_parentForm;
+					$this->_parentForm->addCheck(new FormValidatorCustom($this->_parentForm, $key, 'required', $requiredLocaleKey, function($key) use ($form) {
+						$metadataModal = $form->getData('metadataModal');
+						if (!$metadataModal) {
+							$references = $form->getData('citations');
+							return !empty($references);
+						}
+						return true;
+					}));
 					break;
 				default:
 					$this->_parentForm->addCheck(new FormValidator($this->_parentForm, $key, 'required', $requiredLocaleKey));
@@ -131,7 +135,7 @@ class PKPSubmissionMetadataFormImplementation {
 	 */
 	function readInputData() {
 		// 'keywords' is a tagit catchall that contains an array of values for each keyword/locale combination on the form.
-		$userVars = array('title', 'prefix', 'subtitle', 'abstract', 'coverage', 'type', 'source', 'rights', 'keywords', 'citations', 'locale');
+		$userVars = array('title', 'prefix', 'subtitle', 'abstract', 'coverage', 'type', 'source', 'rights', 'keywords', 'citations', 'locale', 'metadataModal');
 		$this->_parentForm->readUserVars($userVars);
 	}
 
@@ -169,7 +173,10 @@ class PKPSubmissionMetadataFormImplementation {
 		$submission->setType($this->_parentForm->getData('type'), null); // Localized
 		$submission->setRights($this->_parentForm->getData('rights'), null); // Localized
 		$submission->setSource($this->_parentForm->getData('source'), null); // Localized
-		$submission->setCitations($this->_parentForm->getData('citations'));
+		$metadataModal = $this->_parentForm->getData('metadataModal');
+		if (!$metadataModal) {
+			$submission->setCitations($this->_parentForm->getData('citations'));
+		}
 
 		// Update submission locale
 		$newLocale = $this->_parentForm->getData('locale');

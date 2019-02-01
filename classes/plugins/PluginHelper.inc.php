@@ -3,8 +3,8 @@
 /**
  * @file classes/plugins/PluginHelper.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PluginHelper
@@ -38,6 +38,7 @@ class PluginHelper {
 	 * Extract and validate a plugin (prior to installation)
 	 * @param $filePath string Full path to plugin archive
 	 * @param $originalFileName string Original filename of plugin archive
+	 * @param &$errorMsg string Modified string of error message, if any
 	 * @return string|null Extracted plugin path on success; null on error
 	 */
 	function extractPlugin($filePath, $originalFileName, &$errorMsg) {
@@ -61,7 +62,12 @@ class PluginHelper {
 		// Test whether the tar binary is available for the export to work
 		$tarBinary = Config::getVar('cli', 'tar');
 		if (!empty($tarBinary) && file_exists($tarBinary)) {
-			exec($tarBinary.' -xzf ' . escapeshellarg($filePath) . ' -C ' . escapeshellarg($pluginExtractDir));
+			$output = '';
+			$returnCode = 0;
+			exec($tarBinary.' -xzf ' . escapeshellarg($filePath) . ' -C ' . escapeshellarg($pluginExtractDir), $output, $returnCode);
+			if ($returnCode) {
+				$errorMsg = __('common.invalidFileType');
+			}
 		} else {
 			$errorMsg = __('manager.plugins.tarCommandNotFound');
 		}
@@ -308,4 +314,3 @@ class PluginHelper {
 	}
 }
 
-?>

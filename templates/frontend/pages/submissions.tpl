@@ -1,8 +1,8 @@
 {**
  * templates/frontend/pages/submissions.tpl
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Display the page to view the editorial team.
@@ -68,7 +68,7 @@
 	{/if}
 
 	{if $currentContext->getLocalizedSetting('privacyStatement')}
-	<div class="privacy_statement">
+	<div class="privacy_statement" id ="privacyStatement">
 		<h2>
 			{translate key="about.privacyStatement"}
 			{include file="frontend/components/editLink.tpl" page="management" op="settings" path="publication" anchor="submissionStage" sectionTitleKey="about.privacyStatement"}

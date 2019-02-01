@@ -3,8 +3,8 @@
 /**
  * @file classes/core/APIRouter.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2000-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class APIRouter
@@ -22,8 +22,6 @@ import('classes.core.Request');
 import('classes.handler.Handler');
 
 class APIRouter extends PKPRouter {
-	/** @var APIHandler */
-	var $_handler;
 
 	/**
 	 * Determines path info parts depending of disable_path_info config value
@@ -106,16 +104,9 @@ class APIRouter extends PKPRouter {
 			SessionManager::getManager();
 		}
 
-		$this->_handler = require ('./'.$sourceFile);
-		$this->_handler->getApp()->run();
-	}
-
-	/**
-	 * Get the API handler.
-	 * @return APIHandler
-	 */
-	function getHandler() {
-		return $this->_handler;
+		$handler = require ('./'.$sourceFile);
+		$this->setHandler($handler);
+		$handler->getApp()->run();
 	}
 
 	/**

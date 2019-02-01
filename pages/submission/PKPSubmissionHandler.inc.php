@@ -3,8 +3,8 @@
 /**
  * @file pages/submission/PKPSubmissionHandler.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PKPSubmissionHandler
@@ -35,6 +35,7 @@ abstract class PKPSubmissionHandler extends Handler {
 			// Authorize submission creation. Author role not required.
 			import('lib.pkp.classes.security.authorization.UserRequiredPolicy');
 			$this->addPolicy(new UserRequiredPolicy($request));
+			$this->markRoleAssignmentsChecked();
 		} else {
 			// Authorize editing of incomplete submissions.
 			import('lib.pkp.classes.security.authorization.SubmissionAccessPolicy');

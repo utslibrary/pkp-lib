@@ -1,8 +1,8 @@
 {**
  * templates/form/textInput.tpl
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2000-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * form text input
@@ -68,7 +68,7 @@
 	{if $FBV_class|strstr:"datepicker"} 
 		<input data-date-format="{$dateFormatShort|dateformatPHP2JQueryDatepicker}" type="hidden" 
 		name="{$FBV_name|escape}"
-		value="{$FBV_value|date_format:"%Y-%m-%d"|escape}"
+		value="{if !empty($FBV_value)}{$FBV_value|date_format:"%Y-%m-%d"|escape}{/if}"
 		id="{$FBV_id|escape}{$uniqId}-altField" />
 	{/if}
 

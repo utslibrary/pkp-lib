@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/users/reviewer/AuthorReviewerGridCellProvider.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2000-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class AuthorReviewerGridCellProvider
@@ -83,7 +83,7 @@ class AuthorReviewerGridCellProvider extends DataObjectGridCellProvider {
 		$actionArgs = array(
 			'submissionId' => $reviewAssignment->getSubmissionId(),
 			'reviewAssignmentId' => $reviewAssignment->getId(),
-			'stageId' => $reviewAssignment->getStageId(),
+			'stageId' => $reviewAssignment->getStageId()
 		);
 
 		$router = $request->getRouter();
@@ -156,3 +156,5 @@ class AuthorReviewerGridCellProvider extends DataObjectGridCellProvider {
 		return '<span class="state">'.__($statusKey).'</span><span class="details">'.__('submission.recommendation', array('recommendation' => $reviewAssignment->getLocalizedRecommendation())).'</span>';
 	}
 }
+
+?>

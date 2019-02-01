@@ -1,8 +1,8 @@
 {**
  * templates/submission/form/step1.tpl
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Step 1 of author submission process.
@@ -91,11 +91,13 @@
 	{/if}
 
 	{* Privacy Statement *}
-	{fbvFormSection list="true"}
-		{capture assign="privacyUrl"}{url router=$smarty.const.ROUTE_PAGE page="about" op="privacy"}{/capture}
-		{capture assign="privacyLabel"}{translate key="user.register.form.privacyConsent" privacyUrl=$privacyUrl}{/capture}
-		{fbvElement type="checkbox" id="privacyConsent" required=true value=1 label=$privacyLabel translate=false checked=$privacyConsent}
-	{/fbvFormSection}
+	{if $hasPrivacyStatement}
+		{fbvFormSection list="true"}
+			{capture assign="privacyUrl"}{url router=$smarty.const.ROUTE_PAGE page="about" op="privacy"}{/capture}
+			{capture assign="privacyLabel"}{translate key="user.register.form.privacyConsent" privacyUrl=$privacyUrl}{/capture}
+			{fbvElement type="checkbox" id="privacyConsent" required=true value=1 label=$privacyLabel translate=false checked=$privacyConsent}
+		{/fbvFormSection}
+	{/if}
 
 	{* Buttons *}
 	{fbvFormButtons id="step1Buttons" submitText="common.saveAndContinue"}

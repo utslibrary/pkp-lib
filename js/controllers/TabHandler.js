@@ -1,8 +1,8 @@
 /**
  * @file js/controllers/TabHandler.js
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2000-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class TabHandler
@@ -72,13 +72,21 @@
 			active: options.selected
 		});
 
-		// Load tabs when focused. This ensures that links which use anchor
-		// elements (eg - #backIssues) will load the tab even if the current
-		// page is already visible.
-		// See: https://github.com/pkp/pkp-lib/issues/1787
-		$tabs.children('.ui-tabs-nav').find('li > a').focus(function(e) {
-			$(this).click();
-		});
+		// Load a tab when the URL hash changes to a named tab
+		// Original issue: https://github.com/pkp/pkp-lib/issues/1787
+		// This technique introduced to resolve tab activation errors from #1787.
+		// See: https://github.com/pkp/pkp-lib/issues/4352
+		window.addEventListener('hashchange', function(e) {
+			var parts = e.newURL.split('#'), hash, $tab;
+			if (parts.length < 2) {
+				return;
+			}
+			hash = parts[1];
+			$tab = $tabs.find('li > a[name="' + hash + '"]');
+			if ($tab.length) {
+				$tab.click();
+			}
+		}, false);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.TabHandler, $.pkp.classes.Handler);
@@ -278,8 +286,7 @@
 		var $element = this.getHtmlElement(),
 				self = this;
 		$.get(jsonContent.tabsUrl, function(data) {
-			var jsonData = $.parseJSON(data);
-			self.replaceWith(jsonData.content);
+			self.replaceWith(data.content);
 		});
 	};
 

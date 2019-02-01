@@ -3,8 +3,8 @@
 /**
  * @file controllers/tab/settings/siteSetup/form/SiteSetupForm.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SiteSetupForm
@@ -126,6 +126,7 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 		$this->setData('pageHeaderTitleImage', $pageHeaderTitleImage);
 		$this->setData('themePluginPath', $site->getSetting('themePluginPath'));
 		$this->setData('defaultMetricType', $site->getSetting('defaultMetricType'));
+		$this->setData('privacyStatement', $site->getSetting('privacyStatement'));
 
 		parent::initData();
 	}
@@ -136,7 +137,8 @@ class SiteSetupForm extends PKPSiteSettingsForm {
 	function readInputData() {
 		$this->readUserVars(
 			array('pageHeaderTitleType', 'title', 'about', 'redirect', 'contactName',
-				'contactEmail', 'minPasswordLength', 'themePluginPath', 'defaultMetricType','pageFooter',)
+				'contactEmail', 'minPasswordLength', 'themePluginPath',
+				'defaultMetricType', 'pageFooter', 'privacyStatement')
 		);
 	}
 

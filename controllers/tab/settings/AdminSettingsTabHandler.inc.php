@@ -3,8 +3,8 @@
 /**
  * @file controllers/tab/settings/AdminSettingsTabHandler.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class AdminSettingsTabHandler
@@ -25,7 +25,7 @@ class AdminSettingsTabHandler extends SettingsTabHandler {
 	function __construct($additionalTabs = array()) {
 		$role = array(ROLE_ID_SITE_ADMIN);
 
-		$this->addRoleAssignment(ROLE_ID_MANAGER,
+		$this->addRoleAssignment([ROLE_ID_MANAGER, ROLE_ID_SITE_ADMIN],
 			array(
 				'showFileUploadForm',
 				'uploadFile',
@@ -48,6 +48,22 @@ class AdminSettingsTabHandler extends SettingsTabHandler {
 	//
 	// Extended methods from SettingsTabHandler
 	//
+	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize($request, &$args, $roleAssignments) {
+		import('lib.pkp.classes.security.authorization.PolicySet');
+		$rolePolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
+
+		import('lib.pkp.classes.security.authorization.RoleBasedHandlerOperationPolicy');
+		foreach($roleAssignments as $role => $operations) {
+			$rolePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, $role, $operations));
+		}
+		$this->addPolicy($rolePolicy);
+
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
 	/**
 	 * @copydoc PKPHandler::initialize()
 	 */

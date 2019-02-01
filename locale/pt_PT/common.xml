@@ -4,8 +4,8 @@
 <!--
   * locale/pt_PT/common.xml
   *
-  * Copyright (c) 2014-2018 Simon Fraser University
-  * Copyright (c) 2000-2018 John Willinsky
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2000-2019 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings.
@@ -515,8 +515,7 @@
 	<message key="common.from">De</message>
 	<message key="common.until">Até</message>
 	<message key="common.lessThan">{$value} ou menos</message>
-	<message key="common.commaListSeparator">, </message>
-	<message key="common.semicolonListSeparator">; </message>
+	<message key="common.listSeparator">,</message>
 	<message key="common.moreThan">{$value} ou mais</message>
 	<message key="common.pagination">{$start}-{$end} de {$total}</message>
 	<message key="common.pagination.label">Visitar páginas adicionais</message>
@@ -538,4 +537,5 @@
 	<message key="notification.removedNavigationMenu">Menu de navegação foi removido com sucesso</message>
 	<message key="list.viewMore">Apresentar mais detalhes sobre {$name}</message>
 	<message key="list.viewLess">Esconder detalhes de {$name}</message>
+	<message key="notification.type.reviewAssignmentUpdated">Atribuição de revisão atualizada.</message>
 </locale>

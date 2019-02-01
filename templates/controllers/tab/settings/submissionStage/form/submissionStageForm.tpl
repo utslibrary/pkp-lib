@@ -1,8 +1,8 @@
 {**
  * controllers/tab/settings/submissionStage/form/submissionStageForm.tpl
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Submission stage management form.
@@ -47,11 +47,13 @@
 	{capture assign=metadataGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.metadata.MetadataGridHandler" op="fetchGrid" escape=false}{/capture}
 	{load_url_in_div id="metadataGridContainer" url=$metadataGridUrl}
 
-	{fbvFormArea id="privacyStatementArea"}
-		{fbvFormSection label="manager.setup.privacyStatement" description="manager.setup.privacyStatement.description"}
-			{fbvElement type="textarea" multilingual=true name="privacyStatement" id="privacyStatement" value=$privacyStatement rich=true}
-		{/fbvFormSection}
-	{/fbvFormArea}
+	{if $enableContextPrivacyStatement}
+		{fbvFormArea id="privacyStatementArea"}
+			{fbvFormSection label="manager.setup.privacyStatement" description="manager.setup.privacyStatement.description"}
+				{fbvElement type="textarea" multilingual=true name="privacyStatement" id="privacyStatement" value=$privacyStatement rich=true}
+			{/fbvFormSection}
+		{/fbvFormArea}
+	{/if}
 
 	{if !$wizardMode}
 		{fbvFormButtons id="submissionStageFormSubmit" submitText="common.save" hideCancel=true}

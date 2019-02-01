@@ -9,8 +9,8 @@
 /**
  * @file classes/plugins/Plugin.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2000-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Plugin
@@ -338,9 +338,11 @@ abstract class Plugin {
 	 * @return string|null
 	 */
 	function getTemplatePath($inCore = false) {
-		$templatePath = ($inCore?PKP_LIB_PATH . DIRECTORY_SEPARATOR:'') . $this->getPluginPath() . DIRECTORY_SEPARATOR . 'templates';
-		if (is_dir($templatePath)) return $templatePath;
-		return null;
+		$basePath = Core::getBaseDir();
+		if ($inCore) {
+			$basePath .= DIRECTORY_SEPARATOR . PKP_LIB_PATH;
+		}
+		return "file:$basePath" . DIRECTORY_SEPARATOR . $this->getPluginPath() . DIRECTORY_SEPARATOR;
 	}
 
 	/**

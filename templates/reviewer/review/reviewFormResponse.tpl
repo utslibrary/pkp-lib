@@ -1,8 +1,8 @@
 {**
  * templates/reviewer/review/reviewFormResponse.tpl
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Review form response components of review form.
@@ -40,7 +40,7 @@
 			{assign var=possibleResponses value=$reviewFormElement->getLocalizedPossibleResponses()}
 			{foreach name=responses from=$possibleResponses key=responseId item=responseItem}
 				{assign var=index value=$smarty.foreach.responses.index}
-				{if $index == $reviewFormResponses[$elementId]}
+				{if isset($reviewFormResponses[$elementId]) && $index == $reviewFormResponses[$elementId]}
 					{assign var=checked value=true}
 				{else}
 					{assign var=checked value=false}

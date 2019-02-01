@@ -2,8 +2,8 @@
 /**
  * @file classes/security/authorization/SubmissionFileAccessPolicy.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2000-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFileAccessPolicy
@@ -162,6 +162,10 @@ class SubmissionFileAccessPolicy extends ContextPolicy {
 			if (!($mode & SUBMISSION_FILE_ACCESS_MODIFY)) {
 				$reviewerFileAccessOptionsPolicy->addPolicy(new SubmissionFileAssignedReviewerAccessPolicy($request, $fileIdAndRevision));
 			}
+
+			// 2c) If the file is part of a query assigned to the user, allow.
+			import('lib.pkp.classes.security.authorization.internal.SubmissionFileAssignedQueryAccessPolicy');
+			$reviewerFileAccessOptionsPolicy->addPolicy(new SubmissionFileAssignedQueryAccessPolicy($request, $fileIdAndRevision));
 
 			// Add the rules from 2)
 			$reviewerFileAccessPolicy->addPolicy($reviewerFileAccessOptionsPolicy);

@@ -1,8 +1,8 @@
 {**
  * templates/authorDashboard/reviewRoundInfo.tpl
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display submission review details in author dashboard page.
@@ -16,7 +16,7 @@
 
 {* Reviewer grid *}
 {if $showReviewerGrid}
-	{capture assign="reviewersGridUrl"}{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewer.AuthorReviewerGridHandler" op="fetchGrid" submissionId=$submission->getId() stageId=$stageId reviewRoundId=$reviewRoundId escape=false}{/capture}
+	{url|assign:reviewersGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewer.AuthorReviewerGridHandler" op="fetchGrid" submissionId=$submission->getId() stageId=$stageId reviewRoundId=$reviewRoundId escape=false}
 	{load_url_in_div id="reviewersGrid-round_"|concat:$reviewRoundId url=$reviewersGridUrl}
 {/if}
 

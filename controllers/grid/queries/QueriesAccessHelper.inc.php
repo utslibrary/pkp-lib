@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/queries/QueriesAccessHelper.inc.php
  *
- * Copyright (c) 2016-2018 Simon Fraser University
- * Copyright (c) 2000-2018 John Willinsky
+ * Copyright (c) 2016-2019 Simon Fraser University
+ * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class QueriesAccessHelper
@@ -59,7 +59,7 @@ class QueriesAccessHelper {
 		if ($this->hasStageRole($query->getStageId(), array(ROLE_ID_MANAGER, ROLE_ID_SUB_EDITOR))) return true;
 
 		// Assigned assistants are allowed
-		if ($this->hasStageRole($query->getStageId(), array(ROLE_ID_ASSISTANT)) && $this->isAssigned($this->_user->getId(), $queryId)) return true;
+		if ($this->hasStageRole($query->getStageId(), array(ROLE_ID_ASSISTANT)) && $this->isAssigned($this->_user->getId(), $query->getId())) return true;
 
 		// Otherwise, not allowed.
 		return false;

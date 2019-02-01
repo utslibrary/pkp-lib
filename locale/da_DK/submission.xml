@@ -4,8 +4,8 @@
 <!--
   * locale/da_DK/submission.xml
   *
-  * Copyright (c) 2014-2018 Simon Fraser University
-  * Copyright (c) 2000-2018 John Willinsky
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2000-2019 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the da_DK (Dansk) locale.
@@ -574,4 +574,5 @@
 	<message key="submission.submit.contactConsent">Tilhørende kontakt</message>
 	<message key="submission.submit.contactConsentDescription">Ja, jeg vil gerne kontaktes i forbindelse med denne indsendelse.</message>
 	<message key="submission.submit.userGroupDescriptionManagers">Indsend med en af følgende roller, hvis du gerne selv vil kunne redigere og publicere denne indsendelse: {$managerGroups}</message>
+	<message key="log.review.reviewUnconsidered">{$editorName} har markeret runde {$round} bedømmelsen til indsendelse {$submissionId} som værende ikke overvejet.</message>
 </locale>

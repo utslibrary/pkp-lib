@@ -3,8 +3,8 @@
 /**
  * @file classes/plugins/PluginRegistry.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2000-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2000-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PluginRegistry
@@ -28,7 +28,7 @@ class PluginRegistry {
 	 * @param $category String the name of the category to retrieve
 	 */
 	static function &getPlugins($category = null) {
-		$plugins =& Registry::get('plugins');
+		$plugins =& Registry::get('plugins', true, array());
 		if ($category !== null) return $plugins[$category];
 		return $plugins;
 	}
@@ -60,7 +60,6 @@ class PluginRegistry {
 	static function register($category, &$plugin, $path, $mainContextId = null) {
 		$pluginName = $plugin->getName();
 		$plugins =& PluginRegistry::getPlugins();
-		if (!$plugins) $plugins = array();
 
 		// If the plugin was already loaded, do not load it again.
 		if (isset($plugins[$category][$pluginName])) return false;
@@ -70,7 +69,6 @@ class PluginRegistry {
 
 		if (isset($plugins[$category])) $plugins[$category][$pluginName] =& $plugin;
 		else $plugins[$category] = array($pluginName => &$plugin);
-		Registry::set('plugins', $plugins);
 		return true;
 	}
 

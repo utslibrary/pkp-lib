@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/plugins/form/UploadPluginForm.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UploadPluginForm
@@ -98,7 +98,7 @@ class UploadPluginForm extends Form {
 					$notificationMgr->createTrivialNotification($user->getId(), NOTIFICATION_TYPE_SUCCESS, array('contents' => __('manager.plugins.upgradeSuccessful', array('versionString' => $pluginVersion->getVersionString(false)))));
 				}
 			}
-		} else {
+		} else if (!$errorMsg) {
 			$errorMsg = __('manager.plugins.invalidPluginArchive');
 		}
 

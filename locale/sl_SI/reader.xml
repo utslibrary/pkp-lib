@@ -4,8 +4,8 @@
 <!--
   * locale/sl_SI/reader.xml
   *
-  * Copyright (c) 2014-2018 Simon Fraser University
-  * Copyright (c) 2000-2018 John Willinsky
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2000-2019 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings.
@@ -56,7 +56,7 @@
 	<message key="rt.admin.sharing.buttonStyleLabel">Slog gumba</message>
 	<message key="rt.admin.sharing.dropDownMenuLabel">Uporabi padajoči meni</message>
 	<message key="rt.admin.sharing.advanced">Napredne nastavitve (neobvezno)</message>
-	<message key="rt.admin.sharing.customizationLink"><![CDATA[Glej <a href="http://support.addthis.com/customer/portal/articles/381236-custom-buttons">AddThis.com customization documentation</a> za navodila.]]></message>
+	<message key="rt.admin.sharing.customizationLink"><![CDATA[Glej <a href="https://www.addthis.com/academy/how-to-create-custom-buttons-with-addthis/">AddThis.com customization documentation</a> za navodila.]]></message>
 	<message key="rt.admin.sharing.brandLabel">Znamka</message>
 	<message key="rt.admin.sharing.dropDownLabel"><![CDATA[Možnosti padajočega menija <br /> (z vejicami ločen seznam)]]></message>
 	<message key="rt.admin.sharing.languageLabel">Jezik</message>

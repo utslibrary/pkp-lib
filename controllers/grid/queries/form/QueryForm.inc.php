@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/users/queries/form/QueryForm.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class QueryForm
@@ -275,7 +275,7 @@ class QueryForm extends Form {
 					$title = $user->getFullName();
 					$userRoles = array();
 					$usersAssignments = $stageAssignmentDao->getBySubmissionAndStageId($query->getAssocId(), $query->getStageId(), null, $user->getId())->toArray();
-					foreach ($usersAssignments as $assignment) {
+					foreach ($usersAssignments as $assignment) {							
 						foreach ($userProps['groups'] as $userGroup) {
 							if ($userGroup['id'] === (int) $assignment->getUserGroupId() && isset($userGroup['name'][AppLocale::getLocale()])) {
 								$userRoles[] = $userGroup['name'][AppLocale::getLocale()];
@@ -289,7 +289,7 @@ class QueryForm extends Form {
 					}
 					$title =  __('submission.query.participantTitle', array(
 								'fullName' => $user->getFullName(),
-								'userGroup' => join(__('common.commaListSeparator'), $userRoles),
+								'userGroup' => join(__('common.listSeparator'), $userRoles),
 					));
 					return $title;
 				},

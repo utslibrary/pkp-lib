@@ -3,8 +3,8 @@
 /**
  * @file controllers/grid/settings/user/form/UserDetailsForm.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UserDetailsForm
@@ -247,9 +247,12 @@ class UserDetailsForm extends UserForm {
 			$this->user->setInlineHelp(1); // default new users to having inline help visible
 		}
 
-		$this->user->setGivenName($this->getData('givenName'), null); // Localized
-		$this->user->setFamilyName($this->getData('familyName'), null); // Localized
-		$this->user->setPreferredPublicName($this->getData('preferredPublicName'), null); // Localized
+		$this->user->setSalutation($this->getData('salutation'));
+		$this->user->setFirstName($this->getData('firstName'));
+		$this->user->setMiddleName($this->getData('middleName'));
+		$this->user->setLastName($this->getData('lastName'));
+		$this->user->setSuffix($this->getData('suffix'));
+		$this->user->setInitials($this->getData('initials'));
 		$this->user->setAffiliation($this->getData('affiliation'), null); // Localized
 		$this->user->setSignature($this->getData('signature'), null); // Localized
 		$this->user->setEmail($this->getData('email'));
